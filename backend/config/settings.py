@@ -1,3 +1,8 @@
+
+
+import dj_database_url
+import os
+
 """
 Django settings for config project.
 
@@ -25,8 +30,7 @@ SECRET_KEY = 'django-insecure-qh1^0$jw!#k7_8k&ams^6%k9+u7!a$b$8@2i(0p91k)1cwfi#g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -54,6 +58,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -131,3 +136,11 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+if DATABASE_URL:
+    DATABASES["default"] = dj_database_url.parse(DATABASE_URL)
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
