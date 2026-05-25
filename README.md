@@ -130,3 +130,23 @@ cd backend
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
+
+###Frontend
+
+cd frontend
+npm install
+npm run dev
+
+
+
+---
+
+### 3. Final repo sanity test
+
+Open GitHub and verify:
+
+```txt id="y7q3mw"
+README visible
+docs folder visible
+backend folder visible
+frontend folder visible
